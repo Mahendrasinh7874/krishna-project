@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Payment</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="number" name="amount" placeholder="Amount" required>
+        <button type="submit">Proceed to Pay</button>
+    </form>
+    
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html> 

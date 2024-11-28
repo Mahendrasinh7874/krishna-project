@@ -1,0 +1,490 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hans Flour Factory</title>
+    <!-- google fonts -->
+    <link href=" {% static '//fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap' %} " rel="stylesheet">
+    <link href=" {% static '//fonts.googleapis.com/css2?family=Lato&display=swap' %} " rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href=" {% static 'css/style-starter.css' %} ">
+    <style>
+.fa-shopping-cart {
+    font-size: 24px;  /* Adjust the size */
+    color: #dbd5d5;      /* Change the color */
+    cursor: pointer;  /* Make it clickable */
+}
+
+.cart-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-icon-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+    </style>
+</head>
+
+<body>
+    <!--/Header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+                <h1><a class="navbar-brand pe-xl-5 pe-lg-4" href=" {% url 'index' %} ">
+                        <i class="fas fa-spa"></i>Hans Flour Factory
+                    </a></h1>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                       <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href=" {% url 'index' %} ">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'about' %} ">About</a>
+                        </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'Product' %} ">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'contact' %} ">Contact</a>
+                        </li>
+                        {% if request.session.log_id %}
+                         <li class="nav-item">
+                            <a href="show-cart"><i class="fa fa-shopping-cart" ></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'Getorder' %} ">Order</a>
+                      </li>
+                    </ul>
+
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                            {% if messages %}
+                        {% for message in messages %}
+                         {{ message }}
+                         {% endfor %}
+                         {% endif %}
+
+                        <li class="nav-item">
+                            <a class="nav-link right" href="/logout">logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link right" href=" {% url 'login' %}">Login</a>
+                        </li>
+                    </ul>
+
+                     {% endif %}
+
+                    <!--/search-right-->
+                    <!--<ul class="header-search me-lg-4">
+                        <li class="nav-item search-right">
+                            <a href=" {% static '#search' %} " class="btn search-btn btn-primary" title="search">Search <span class="fas fa-search ms-3" aria-hidden="true"></span></a>
+                           search popup
+                            <div id="search" class="pop-overlay">
+                                <div class="popup">
+                                    <h3 class="title-w3l two mb-4 text-left">Search Here</h3>
+                                    <form action="#" method="GET" class="search-box d-flex position-relative">
+                                        {% csrf_token %}
+                                        <input type="search" placeholder="Enter Keyword here" name="search" required="required" autofocus="">
+                                        <button type="submit" class="btn"><span class="fas fa-search" aria-hidden="true"></span></button>
+                                    </form>
+                                </div>
+                                <a class="close" href=" {% static '#close' %} ">×</a>
+                            </div>
+                             /search popup
+                        </li>
+                    </ul>-->
+                    <!--//search-right-->
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//Header-->
+    <!--/main-slider -->
+    <section class="w3l-main-slider banner-slider position-relative" id="home">
+        <div class="owl-one owl-carousel owl-theme">
+            <div class="item">
+                <div class="slider-info banner-view banner-top1">
+                    <div class="container">
+                        <div class="banner-info header-hero-19">
+                            <h5>Customer Satisfaction for Everyone</h5>
+                            <h3 class="title-hero-19">Experience the Best Flour Services</h3>
+                        </div>
+                        <div class="banner-info header-hero-19 banner-info2 header-hero-192">
+                            <h5>Given Fresh Flour For Fitness</h5>
+                            <h3 class="title-hero-19">Professional Technologies Make a Flours</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="scroll-button">
+            <a href=" {% url 'about' %} " class="scroll">
+                <div class="arrow"></div>
+            </a>
+        </div>
+    </section>
+    <!-- //main-slider -->
+    <!--/bottom-3-grids-->
+    <div class="w3l-3-grids py-5" id="grids-3">
+        <div class="container py-md-5 py-2">
+            <div class="title-content text-center">
+                <h6 class="title-subw3hny mb-1">About Us</h6>
+                <h3 class="title-w3l">Popular Services</h3>
+                <p class="text-para mb-4">Hans Flour Factory Gives a high emphasis on product quality and consistency.  </p>
+            </div>
+            <!--/row-1-->
+
+            <div class="row pt-lg-4 mt-5 top-grids3-info">
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-sm-4">
+                    <div class="grids3-info position-relative">
+                        <a href="#" class="d-block zoom"><img src=" {% static 'images/b3.jpg' %} " alt="" class="img-fluid news-image"></a>
+                        <div class="w3-grids3-info">
+                        </div>
+                    </div>
+                    <h4 class="text-center mt-4">Best Quality
+                    </h4>
+                    <p class="text-center mb-3">Quality is is the result of high intention, sincere effort, intelligent direction, and skillful execution.</p>
+                    <a class="w3item-link" href="/Product">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-4 grids3-info2">
+                    <div class="grids3-info second position-relative">
+                        <a href=" {% url 'index' %} " class="d-block zoom"><img src=" {% static 'images/b2.jpg' %} " alt="" class="img-fluid news-image"></a>
+                        <div class="w3-grids3-info second">
+                        </div>
+                    </div>
+
+                    <h4 class="gdnhy-1 mt-4">Premium Products
+                    </h4>
+                    <p class="text-center mb-3">Don’t find customers for your products, find products for your customers</p>
+                    <a class="w3item-link" href="/Product">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
+                    <div class="grids3-info position-relative">
+                        <a href=" {% url 'index' %} " class="d-block zoom"><img src=" {% static 'images/b6.jpg' %} " alt="" class="img-fluid news-image"></a>
+                        <div class="w3-grids3-info">
+
+                        </div>
+                    </div>
+                    <h4 class="gdnhy-1 mt-4">The Latest Machinery
+                    </h4>
+                    <p class="text-center mb-3">These innovations are designed to enhance productivity and improve the quality of the Product</p>
+                    <a class="w3item-link" href="/Product">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//bottom-3-grids-->
+
+    <!--/home-page-video-popup-->
+    <section class="w3l-video-sec py-5" id="">
+        <div class="container py-md-5">
+            <div class="row">
+                <div class="col-lg-7 w3l-index5 py-5">
+                    <div class="w3video-bghny py-5">
+                        <div class="history-info position-relative py-5 my-lg-5">
+                            <a href=" " class="popup-with-zoom-anim play-view text-center position-absolute">
+                                <span class="video-play-icon">
+                                    <span class="fa fa-play"></span>
+                                </span>
+                            </a>
+                            <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 w3l-video-info-right ps-lg-5 mt-lg-0 mt-5">
+                    <div class="title-content-two">
+                        <h6 class="title-subw3hny">Popular Services</h6>
+                        <h3 class="title-w3l">Memorable Healthy Experience</h3>
+                        <p class="mt-2">At Hans Flour Factory, we believe that a healthy lifestyle begins with memorable experiences in the kitchen. Our website is designed to inspire and empower you to create nutritious and delicious meals that bring joy to your daily life</p>
+                        <a href=" {% url 'services' %} " class="btn btn-style btn-primary mt-lg-5 mt-4">Our Services </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //home-page-video-popup-->
+    <!--/Gallery-Section-->
+   <!-- <section class="w3l-gallery" id="gallery">
+        <div class="destionation-innf py-5">
+            <div class="container py-lg-5 py-md-4 py-2 HomePageGallery">
+                <div class="title-content text-center">
+                    <h6 class="title-subw3hny text-center">Gallery</h6>
+                    <h3 class="title-w3l mb-5 text-center">Photo Gallery</h3>
+                </div>
+                /grids-grids
+                <ul class="gallery_agile">
+                    <li>
+                        <div class="w3_agile_portfolio_grid">
+                            <a href="#">
+                                <img src=" {% static 'images/g1.jpg' %} " alt=" " class="img-fluid radius-image" />
+                                <div class="portfolio-info">
+                                    <h4>Gallery 1</h4>
+                                    <i class="fas fa-plus details-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="w3_agile_portfolio_grid mt-4">
+                           <a href="#">
+                                <img src=" {% static 'images/g2.jpg' %} " alt=" " class="img-fluid radius-image" />
+                                <div class="portfolio-info">
+                                    <h4>Gallery 2</h4>
+                                    <i class="fas fa-plus details-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="w3_agile_portfolio_grid">
+                            <a href="#">
+                                <img src=" {% static 'images/g3.jpg' %} " alt=" " class="img-fluid radius-image" />
+                                <div class="portfolio-info">
+                                    <h4>Gallery 3</h4>
+                                    <i class="fas fa-plus details-link"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="w3_agile_portfolio_grid">
+                            <a href="#">
+                                <img src=" {% static 'images/g4.jpg' %} " alt=" " class="img-fluid radius-image" />
+                                <div class="portfolio-info">
+                                    <h4>Gallery 4</h4>
+                                    <i class="fas fa-plus details-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="w3_agile_portfolio_grid mt-4">
+                            <a href="#">
+                                <img src=" {% static 'images/g5.jpg' %} " alt=" " class="img-fluid radius-image" />
+                                <div class="portfolio-info">
+                                    <h4>Gallery 5</h4>
+                                    <i class="fas fa-plus details-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                //grids-grids
+            </div>
+        </div>
+    </section>-->
+    <!--//Gallery-Section-->
+    <!--//testimonials-->
+    <section class="w3l-clients-1" id="testimonials">
+        <!--/cusrtomer-layout-->
+        <div class="cusrtomer-layout py-5 pt-0">
+            <div class="container py-lg-5 py-md-4 py-2 pt-0">
+                <!--/testimonial-grids-->
+                <div class="testimonial-row">
+                    <div id="owl-demo1" class="owl-testimonial owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="testimonial-content">
+                                <div class="testimonial">
+                                    <div class="testi-des">
+                                        <i class="fas fa-quote-left"></i>
+                                        <div class="peopl align-self">
+                                            <h3>Suresh kumavat</h3>
+                                        </div>
+                                    </div>
+                                    <blockquote>
+                                        We see our customers as invited guests to a party, and we are the hosts. It’s our job every day to make every important aspect of the customer experience a little bit better.
+                                        Treating customers with exceptional care can significantly enhance their shopping experience
+                                    </blockquote>
+                                    <ul class="social-media-test m-0 mt-4 p-0">
+                                        <li><a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a></li>
+                                        <li><a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+                                        </li>
+                                        <li><a href=" {% static '#instagram' %} " class="instagram"><span class="fab fa-instagram"></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--//testimonial-grids-->
+            </div>
+        </div>
+        <!--//cusrtomer-layout-->
+    </section>
+    <!-- //testimonials -->
+
+    <!--/home-page-mid-->
+    <section class="w3-midhny-sec py-5" id="mid">
+        <div class="container py-lg-5">
+            <div class="w3-midhny-info">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="bottom-info">
+                            <div class="header-section title-content-two pe-lg-5">
+                                <h5 class="title-subw3hny mb-3">Our Special Offer</h5>
+                                <h3 class="title-w3l two mb-4">An Incredible Buying Flour <br>Experience
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 align-self mt-lg-0 mt-sm-5 mt-4">
+                        <div class="w3l-buttons d-sm-flex justify-content-end">
+                            <a href=" {% url 'Product' %} " class="btn btn-style btn-white btn-primary">
+                                Make an Order</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <!--//home-page-mid-->
+    <!--/w3l-subscribe-->
+
+    <!--//instagram-grid-wrap-->
+    <!--/w3l-footer-29-main-->
+    <footer class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container">
+                <div class="row footer-top-29">
+                    <div class="col-lg-3 col-md-6 footer-list-29 footer-1 pe-lg-5">
+                        <div class="bottom-copies">
+
+                            <h2><a class="navbar-brand" href=" {% url 'index' %} ">
+                                    <i class="fas fa-spa"></i>HANS FLOUR FACTORY
+                                </a></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 footer-list-29 footer-3 mt-lg-0 mt-3">
+
+                     </div>
+                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4">
+                        <div class="main-social-footer-29">
+                            <a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a>
+                            <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+                            <a href=" {% static '#instagram' %} " class="instagram"><span class="fab fa-instagram"></span></a>
+                            <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
+        </script>
+        <!-- //move top -->
+    </footer>
+    <!-- Template JavaScript -->
+    <script src=" {% static 'js/jquery-3.3.1.min.js' %} "></script>
+    <script src=" {% static 'js/theme-change.js' %} "></script>
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function() {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function() {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function() {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function() {
+            $('.navbar-toggler').click(function() {
+                $('body').toggleClass('noscroll');
+            })
+        });
+
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- //bootstrap -->
+    <script src=" {% static 'js/bootstrap.min.js' %} "></script>
+
+</body>
+
+</html>

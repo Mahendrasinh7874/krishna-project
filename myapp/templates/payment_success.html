@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment Success</title>
+    <style>
+        .success-container {
+            text-align: center;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .order-details {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="success-container">
+        <h1>Payment Successful!</h1>
+        <div class="order-details">
+            <h2>Order Details:</h2>
+            <p>Order ID: {{ order_id }}</p>
+            <p>Payment ID: {{ payment_id }}</p>
+            <p>Total Amount: ₹{{ ordered_items.totalPrice }}</p>
+
+            <h3>Items:</h3>
+            <ul>
+                {% for item in ordered_items.cart.all %}
+                <li>{{ item.p_id.name }} - Quantity: {{ item.quantity }} - Price: ₹{{ item.tprice }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="{% url 'index' %}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+</body>
+
+</html>

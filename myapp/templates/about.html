@@ -1,0 +1,524 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hans Flour Factory</title>
+    <!-- google fonts -->
+    <link href=" {% static '//fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap' %} " rel="stylesheet">
+    <link href=" {% static '//fonts.googleapis.com/css2?family=Lato&display=swap' %} " rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href=" {% static 'css/style-starter.css' %} ">
+       <style>
+.fa-shopping-cart {
+    font-size: 24px;  /* Adjust the size */
+    color: #dbd5d5;      /* Change the color */
+    cursor: pointer;  /* Make it clickable */
+}
+
+.cart-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-icon-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+    </style>
+</head>
+
+<body>
+    <!--/Header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+                <h1><a class="navbar-brand pe-xl-5 pe-lg-4" href=" {% url 'index' %} ">
+                        <i class="fas fa-spa"></i>Hans Flour Factory
+                    </a></h1>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href=" {% url 'index' %} ">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href=" {% url 'about' %} ">About</a>
+                        </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'Product' %} ">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'contact' %} ">Contact</a>
+                        </li>
+                         {% if request.session.log_id %}
+                         <li class="nav-item">
+                            <a href="show-cart"><i class="fa fa-shopping-cart" ></i></a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                            {% if messages %}
+                        {% for message in messages %}
+                         {{ message }}
+                         {% endfor %}
+                         {% endif %}
+
+                        <li class="nav-item">
+                            <a class="nav-link right" href="/logout">logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link right" href=" {% url 'login' %}">Login</a>
+                        </li>
+                    </ul>
+
+                     {% endif %}
+                    </ul>
+                    <!--/search-right-->
+
+                    <!--//search-right-->
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//Header-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            About Us </h2>
+                        <p class="inner-page-para mt-2">
+                            Healthy for Everyone</p>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href=" {% url 'index' %} ">Home</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span> About Us</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+    <!--/bottom-3-grids-->
+    <div class="w3l-3-grids py-5" id="grids-3">
+        <div class="container py-md-5 py-2">
+            <div class="abin-top-content text-center mb-md-5 mb-4">
+                <h6 class="title-subw3hny">About Us</h6>
+                <h3 class="title-w3l mb-3">Our Story</h3>
+                <p class="abinfo-para">For over 35 years, our Shop has been the go-to destination for those seeking the best quality flour. With decades of
+                    experience in the industry, we pride ourselves on offering a wide range of premium flours, carefully sourced and selected to meet the highest
+                    standards</p>
+            </div>
+            <div class="aboyt-ininf">
+                <div class="about-img">
+                    <img src=" {% static 'assets/images/banner3.jpg' %} " alt="" class="img-fluid radius-image">
+                </div>
+                <div class="three-grids-hmew3">
+                    <div class="three-grid-1 text-left mt-5">
+
+                        <h4>Who We Are ?</h4>
+                        <p class="mt-2 pr-lg-4">We are a family-owned business with deep roots in the community, proudly led by Balaram Kumavat. For 35 years, Balaram has been at the helm,
+                            ensuring that our shop upholds its reputation for quality and trust.
+                        </p>
+                    </div>
+                    <div class="three-grid-1 text-left mt-5">
+
+                        <h4>What We Do ?</h4>
+                        <p class="mt-2 pr-lg-4">At our shop, we specialize in making different types of flour to meet the diverse needs of our customers.
+                            Whether it's all-purpose, whole wheat, gluten-free, or specialty flours
+                        </p>
+                    </div>
+                    <div class="three-grid-1 text-left mt-5">
+
+                        <h4>Why Choose Us</h4>
+                        <p class="mt-2 pr-lg-4">When it comes to flour, quality matters, and that's exactly what we deliver. We are committed to providing the best quality products that you can trust for all your baking and cooking needs.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--//bottom-3-grids-->
+    <!--/features-section -->
+   <!-- <section class="w3l-features py-5" id="work">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <div class="title-content text-center mb-md-5 mb-4">
+                <h6 class="title-subw3hny mb-1">Why Us</h6>
+                <h3 class="title-w3l mb-5">What We Offer</h3>
+            </div>
+            <div class="main-cont-wthree-2 align-items-center text-center pt-lg-4">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-6 mt-lg-0 mt-5">
+                        <div class="grids-1 box-wrap">
+                            <div class="icon">
+                                <i class="fas fa-biking"></i>
+                            </div>
+                            <h4><a href=" {% static '#service' %} " class="title-head mb-3">
+                                    Body Treatments</a></h4>
+                            <p class="text-para mb-3">Lorem ipsum dolor sit. Id ab commodi magnam. </p>
+                            <a class="w3item-link" href=" {% url 'services' %} ">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-lg-0 mt-5">
+                        <div class="grids-1 box-wrap">
+                            <div class="icon">
+                                <i class="far fa-gem"></i>
+                            </div>
+                            <h4><a href=" {% static '#service' %} " class="title-head mb-3">
+                                    Stone Therapy</a></h4>
+                            <p class="text-para mb-3">Lorem ipsum dolor sit. Id ab commodi magnam. </p>
+                            <a class="w3item-link" href=" {% url 'services' %} ">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-lg-0 mt-5">
+                        <div class="grids-1 box-wrap">
+                            <div class="icon">
+                                <i class="fas fa-theater-masks"></i>
+                            </div>
+                            <h4><a href=" {% static '#service' %} " class="title-head mb-3">
+                                    Facial Treatments</a></h4>
+                            <p class="text-para mb-3">Lorem ipsum dolor sit. Id ab commodi magnam. </p>
+                            <a class="w3item-link" href=" {% url 'services' %} ">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-lg-0 mt-5">
+                        <div class="grids-1 box-wrap">
+                            <div class="icon">
+                                <i class="fas fa-bath"></i>
+                            </div>
+                            <h4><a href=" {% static '#service' %} " class="title-head mb-3">
+                                    Spa Programs</a></h4>
+                            <p class="text-para mb-3">Lorem ipsum dolor sit. Id ab commodi magnam. </p>
+                            <a class="w3item-link" href=" {% url 'services' %} ">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>-->
+    <!--//features section -->
+    <!--/team-->
+    <section id="team" class="w3lteam py-5">
+        <div class="container py-md-5">
+            <div class="title-content text-center">
+                <h6 class="title-subw3hny mb-1">Our Team</h6>
+                <h3 class="title-w3l mb-5">Our Creative Team.</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="member">
+                        <div class="pic"><img src=" {% static 'images/team1.jpg' %} " class="img-fluid radius-image" alt=""></div>
+                        <div class="member-info">
+                            <div class="member-info-content">
+                                <h4>Walter White</h4>
+                                <span>Esthetician</span>
+                            </div>
+                            <div class="social">
+                                <a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a>
+                                <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+
+
+                                <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="member">
+                        <div class="pic"><img src=" {% static 'images/team2.jpg' %} " class="img-fluid radius-image" alt=""></div>
+                        <div class="member-info">
+                            <div class="member-info-content">
+                                <h4>Sarah Jhonson</h4>
+                                <span>Hair Dresser</span>
+                            </div>
+                            <div class="social">
+                                <a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a>
+                                <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+
+
+                                <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="member">
+                        <div class="pic"><img src=" {% static 'images/team3.jpg' %} " class="img-fluid radius-image" alt=""></div>
+                        <div class="member-info">
+                            <div class="member-info-content">
+                                <h4>William Anderson</h4>
+                                <span>Pedicurist</span>
+                            </div>
+                            <div class="social">
+                                <a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a>
+                                <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+
+
+                                <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="member">
+                        <div class="pic"><img src=" {% static 'images/team4.jpg' %} " class="img-fluid radius-image" alt=""></div>
+                        <div class="member-info">
+                            <div class="member-info-content">
+                                <h4>Linda James</h4>
+                                <span>Cosmetologist</span>
+                            </div>
+                            <div class="social">
+                                <a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a>
+                                <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+
+
+                                <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </section><!-- End Team Section -->
+    <!--/w3l-project-->
+    <section id="counts" class="w3lcounts">
+        <div class="container py-md-3">
+            <div class="w3l-project-in">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 w3stats_info counter_grid">
+                        <div class="count-box">
+                            <i class="fas fa-users"></i>
+                            <div class="count-box-right">
+                                <p class="counter">1120</p>
+                                <p>Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+
+                <!--    <div class="col-lg-3 col-md-6 mt-5 mt-md-0 w3stats_info counter_grid">
+                        <div class="count-box">
+                            <i class="fas fa-user-shield"></i>
+                            <div class="count-box-right">
+                                <p class="counter">1560</p>
+                                <p>Our Staff</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0 w3stats_info counter_grid">
+                        <div class="count-box">
+                            <i class="fas fa-headset"></i>
+                            <div class="count-box-right">
+                                <p class="counter">1660</p>
+                                <p>Hours Of Support</p>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0 w3stats_info counter_grid">
+                        <div class="count-box">
+                            <i class="fas fa-trophy"></i>
+                            <div class="count-box-right">
+                                <p class="counter">5</p>
+                                <p>Awards</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//w3l-project-->
+    <!--/w3l-midslider-->
+    <section class="w3l-midslider py-5" id="midslider">
+        <!-- /grids -->
+        <div class="container py-md-5">
+            <div class="row">
+                <div class="col-lg-5 title-content-two text-left pe-lg-5 mb-lg-0 mb-5">
+                    <h6 class="title-subw3hny mb-1">What We Offer</h6>
+                    <h3 class="title-w3l mb-3">
+                        Modern Approach to Every New Order</h3>
+                    <p class="mb-3">we offer delivery within 24 hours, Only for our customers in Ahmedabad.
+                        This rapid service reflects our commitment to keeping up with the fast-paced demands of today,
+                        ensuring that you receive your orders quickly and reliably, every time.</p>
+
+
+                </div>
+                <!-- /grids -->
+                <div class="col-lg-7 stats_info-images ps-lg-5">
+                    <div class="stats_info-images-right row">
+                        <div class="col-6 mid-slider-content">
+                            <img src=" {% static 'assets/images/ab1.jpg' %} " class="img-fluid radius-image" alt="">
+                        </div>
+                        <div class="col-6 mid-slider-content">
+                            <img src=" {% static 'assets/images/ab2.jpg' %} " class="img-fluid radius-image" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /grids -->
+        </div>
+    </section>
+    <!--//w3l-midslider-->
+    <!--/w3l-footer-29-main-->
+    <footer class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container">
+                <div class="row footer-top-29">
+                    <div class="col-lg-3 col-md-6 footer-list-29 footer-1 pe-lg-5">
+                        <div class="bottom-copies">
+
+                            <h2><a class="navbar-brand" href=" {% url 'index' %} ">
+                                    <i class="fas fa-spa"></i>Hans Flour Factory
+                                </a></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 footer-list-29 footer-3 mt-lg-0 mt-3">
+
+                        <p class="copy-footer-29 text-center"><a href="https://w3layouts.com"></a></p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4">
+                        <div class="main-social-footer-29">
+                            <a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a>
+                            <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+                            <a href=" {% static '#instagram' %} " class="instagram"><span class="fab fa-instagram"></span></a>
+                            <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
+        </script>
+        <!-- //move top -->
+    </footer>
+    <!-- Template JavaScript -->
+    <script src=" {% static 'js/jquery-3.3.1.min.js' %} "></script>
+    <script src=" {% static 'js/theme-change.js' %} "></script>
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function() {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function() {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function() {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function() {
+            $('.navbar-toggler').click(function() {
+                $('body').toggleClass('noscroll');
+            })
+        });
+
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- //bootstrap -->
+    <script src=" {% static 'js/bootstrap.min.js' %} "></script>
+
+</body>
+
+</html>

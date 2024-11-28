@@ -1,0 +1,382 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Product</title>
+    <!-- google fonts -->
+    <link href=" {% static '//fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap' %} " rel="stylesheet">
+    <link href=" {% static '//fonts.googleapis.com/css2?family=Lato&display=swap' %} " rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href=" {% static 'css/style-starter.css' %} ">
+    <style>
+    .news-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+}
+    /* Cart Products Section */
+.w3l-cart .card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.w3l-cart .card-img {
+    width: 100%;
+    height: auto;
+}
+
+.w3l-cart .card-body {
+    padding: 15px;
+}
+
+.w3l-cart .btn {
+    margin-top: 10px;
+}
+.products{
+    position:relative;
+    top:80px;
+    min-height:100vh;
+    }
+table{
+width:100%;
+}
+.one,.two,.three,.four,.five,.six{
+width:max-content;
+text-align:center;
+padding:0px 10px;
+background-color:#575757;
+color:white;
+font-weight:bold;
+font-size:15px;
+}
+.one{
+width:250px;
+}
+.one img{
+height:100px;
+padding:5px 0;
+width:100px;
+}
+.checkout{
+width:50vw;
+margin:25px auto;
+text-align:center;
+border-radius:5px;
+padding:25px;
+background-color:#575757;
+}
+.checkout h3{
+display:inline;
+margin:20px 25px;
+}
+#popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+                            .fa-shopping-cart {
+                                font-size: 24px;  /* Adjust the size */
+                                color: #dbd5d5;      /* Change the color */
+                                cursor: pointer;  /* Make it clickable */
+                            }
+
+                            .cart-icon-container {
+                                position: relative;
+                                display: inline-block;
+                            }
+
+                            .cart-icon-badge {
+                                position: absolute;
+                                top: -10px;
+                                right: -10px;
+                                background-color: red;
+                                color: white;
+                                border-radius: 50%;
+                                padding: 2px 6px;
+                                font-size: 12px;
+                            }
+    </style>
+</head>
+
+<body>
+
+    <!--/Header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+                <h1><a class="navbar-brand pe-xl-5 pe-lg-4" href=" {% url 'index' %} ">
+                        <i class="fas fa-spa"></i>Hans Flour Factory
+                    </a></h1>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href=" {% url 'index' %} ">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'about' %} ">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'Product' %} ">Product</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'contact' %} ">Contact</a>
+                        </li>
+                         {% if request.session.log_id %}
+                         <li class="nav-item">
+                            <a href="show-cart"><i class="fa fa-shopping-cart" ></i></a>
+                        </li>
+                      <li class="nav-item">
+                            <a class="nav-link active" href=" {% url 'Orders' %} ">Order</a>
+                      </li>
+                    </ul>
+
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                            {% if messages %}
+                        {% for message in messages %}
+                         {{ message }}
+                         {% endfor %}
+                         {% endif %}
+
+                        <li class="nav-item">
+                            <a class="nav-link right" href="/logout">logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link right" href=" {% url 'login' %}">Login</a>
+                        </li>
+                    </ul>
+
+                     {% endif %}
+                </div>
+                    <!--/search-right-->
+
+
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//Header-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Orders </h2>
+                        <p class="inner-page-para mt-2">
+                            Healthy for Everyone</p>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href=" {% url 'index' %} ">Home</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Orders</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+    <!--/w3l-services-1-->
+
+    <!-- /w3l-skills-->
+          <!--/pricing-section-->
+    <!-- /w3l-skills-->
+<!-- Orders Section -->
+<section class="products w3l-cart py-5">
+    <table>
+        <tr>
+            <td class="one" style="background-color:black;font-size:20px;padding:15px 0;">Image</td>
+            <td class="two" style="background-color:black;font-size:20px;padding:15px 0;">Name</td>
+            <td class="three" style="background-color:black;font-size:20px;padding:15px 0;">Quantity Of Ordered Bags</td>
+            <td class="four" style="background-color:black;font-size:20px;padding:15px 0;">Price</td>
+            <td class="five" style="background-color:black;font-size:20px;padding:15px 0;">Status</td>
+        </tr>
+
+        <tr style="border-bottom:2px solid black;">
+            <td class="one"><img src="../static/images/b2.JPG" alt="Product Image"/></td>
+            <td class="two">Wheat</td>
+            <td class="three">10</td>
+            <td class="four">500</td>
+            <td class="five">Done</td>
+
+                <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:black;">Edit Quantity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </td>
+        </tr>
+    </table>
+
+</section>
+<!-- /Orders Section -->
+
+    <!--/pricing-section-->
+    <!--/w3l-footer-29-main-->
+    <footer class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container">
+                <div class="row footer-top-29">
+                    <div class="col-lg-3 col-md-6 footer-list-29 footer-1 pe-lg-5">
+                        <div class="bottom-copies">
+
+                            <h2><a class="navbar-brand" href=" {% url 'index' %} ">
+                                    <i class="fas fa-spa"></i>Spaw
+                                </a></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 footer-list-29 footer-3 mt-lg-0 mt-3">
+
+                        <p class="copy-footer-29 text-center">© 2021 Spaw. All rights reserved | Designed by <a href="https://w3layouts.com">W3layouts</a></p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4">
+                        <div class="main-social-footer-29">
+                            <a href=" {% static '#facebook' %} " class="facebook"><span class="fab fa-facebook-f"></span></a>
+                            <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+                            <a href=" {% static '#instagram' %} " class="instagram"><span class="fab fa-instagram"></span></a>
+                            <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
+        </script>
+        <!-- //move top -->
+    </footer>
+    <!-- Template JavaScript -->
+    <script src=" {% static 'js/jquery-3.3.1.min.js' %} "></script>
+    <script src=" {% static 'js/theme-change.js' %} "></script>
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function() {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function() {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function() {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function() {
+            $('.navbar-toggler').click(function() {
+                $('body').toggleClass('noscroll');
+            })
+        });
+
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- //bootstrap -->
+    <script src=" {% static 'js/bootstrap.min.js' %} "></script>
+
+</body>
+
+</html>

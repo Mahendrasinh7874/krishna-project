@@ -1,0 +1,508 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% load mathop %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hans Flour Factory</title>
+    <!-- google fonts -->
+    <link
+        href=" {% static '//fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap' %} "
+        rel="stylesheet">
+    <link href=" {% static '//fonts.googleapis.com/css2?family=Lato&display=swap' %} " rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href=" {% static 'css/style-starter.css' %} ">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        /* Add this to your CSS file or within a <style> tag in your HTML */
+        .news-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            /* Adds rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Adds a subtle shadow */
+            object-fit: cover;
+            /* Ensures the image covers the container without distortion */
+        }
+
+        /* Cart Products Section */
+        .w3l-cart .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .w3l-cart .card-img {
+            width: 100%;
+            height: auto;
+        }
+
+        .w3l-cart .card-body {
+            padding: 15px;
+        }
+
+        .w3l-cart .btn {
+            margin-top: 10px;
+        }
+
+        .products {
+            position: relative;
+            top: 80px;
+            min-height: 100vh;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .one,
+        .two,
+        .three,
+        .four,
+        .five {
+            width: max-content;
+            text-align: center;
+            padding: 0px 10px;
+            background-color: #575757;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .one {
+            width: 250px;
+        }
+
+        .one img {
+            height: 100px;
+            padding: 5px 0;
+            width: 100px;
+        }
+
+        .checkout {
+            width: 50vw;
+            margin: 25px auto;
+            text-align: center;
+            border-radius: 5px;
+            padding: 25px;
+            background-color: #575757;
+        }
+
+        .checkout h3 {
+            display: inline;
+            margin: 20px 25px;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .fa-shopping-cart {
+            font-size: 24px;
+            /* Adjust the size */
+            color: #dbd5d5;
+            /* Change the color */
+            cursor: pointer;
+            /* Make it clickable */
+        }
+
+        .cart-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-icon-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body >
+    <!--/Header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+                <h1><a class="navbar-brand pe-xl-5 pe-lg-4" href=" {% url 'index' %} ">
+                        <i class="fas fa-spa"></i>Hans Flour Factory
+                    </a></h1>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href=" {% url 'index' %} ">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'about' %} ">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'Product' %} ">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'contact' %} ">Contact</a>
+                        </li>
+                        {% if request.session.log_id %}
+                        <li class="nav-item active">
+                            <a href="{% url 'show-cart' %}"><i class="fa fa-shopping-cart"></i></a>
+                        </li>
+                    </ul>
+
+
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link right" href="/logout">logout</a>
+                        </li>
+
+                    </ul>
+                    {% else %}
+                    <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link right" href=" {% url 'login' %}">Login</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+
+    <!--//Cart Products Section-->
+    <section class="products w3l-cart py-5">
+        <table>
+            <tr>
+                <td class="one" style="background-color:black;font-size:20px;padding:15px 0;">Image</td>
+                <td class="two" style="background-color:black;font-size:20px;padding:15px 0;">Name</td>
+                <td class="three" style="background-color:black;font-size:20px;padding:15px 0;">Quantity</td>
+                <td class="four" style="background-color:black;font-size:20px;padding:15px 0;">Price</td>
+                <td class="five" style="background-color:black;font-size:20px;padding:15px 0;">Action</td>
+            </tr>
+            {% for item in cart_items %}
+            <tr style="border-bottom:2px solid black;">
+                <td class="one"><img src="/media/{{item.p_id.product_image}}" alt="Product Image" /></td>
+                <td class="two">{{ item.p_id.name }}</td>
+                <td class="three">{{ item.quantity }}</td>
+                <td class="four">{{ item.tprice }}</td>
+                <td class="five">
+                    <a href="{% url 'removeitem' item.id %}" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> 
+                    </a>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                        <span class="material-symbols-outlined">edit</span>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel" style="color:black;">Edit Quantity
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'update-cart' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if total %}
+        <div class="checkout">
+            <h3>Total : {{total}}</h3>
+            <a href="{% url 'initiate_payment' amount=total %}">
+                <button type="button" class="btn btn-success" title="CheckOut">
+                    CheckOut
+                </button>
+            </a>
+        </div>
+        {% endif %}
+    </section>
+
+    <!--//Products Section-->
+
+
+    <footer class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container">
+                <div class="row footer-top-29">
+                    <div class="col-lg-3 col-md-6 footer-list-29 footer-1 pe-lg-5">
+                        <div class="bottom-copies">
+
+                            <h2><a class="navbar-brand" href=" {% url 'index' %} ">
+                                    <i class="fas fa-spa"></i>HANS FLOUR FACTORY
+                                </a></h2>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-md-6 footer-list-29 footer-3 mt-lg-0 mt-3">
+
+                        <p class="copy-footer-29 text-center"></p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4">
+                        <div class="main-social-footer-29">
+                            <a href=" {% static '#facebook' %} " class="facebook"><span
+                                    class="fab fa-facebook-f"></span></a>
+                            <a href=" {% static '#twitter' %} " class="twitter"><span class="fab fa-twitter"></span></a>
+                            <a href=" {% static '#instagram' %} " class="instagram"><span
+                                    class="fab fa-instagram"></span></a>
+                            <a href=" {% static '#linkd' %} " class="linkd"><span class="fab fa-linkedin-in"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script type="text/javascript">
+            // When the user scrolls down 20px from the top of the document, show the button
+            // function starter(){
+            // let pr = document.getElementById('tprice').value;
+            // console.log(pr)
+            // document.getElementById("display").innerHTML = pr;
+            // }
+            window.onscroll = function () {
+                scrollFunction();
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            $(document).ready(function () {
+                $('.slides').slick({
+                    infinite: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: true,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                });
+            });
+
+
+            function openPopup() {
+                document.getElementById('popup').style.display = 'block';
+                document.getElementById('popup-overlay').style.display = 'block';
+            }
+
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('popup-overlay').style.display = 'none';
+            }
+            function openModal() {
+                document.getElementById('itemModal').style.display = 'flex';
+            }
+
+            function closeModal() {
+                document.getElementById('itemModal').style.display = 'none';
+            }
+
+        </script>
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <!-- //move top -->
+    </footer>
+    <!-- Template JavaScript -->
+    <script src=" {% static 'js/jquery-3.3.1.min.js' %} "></script>
+    <script src=" {% static 'js/theme-change.js' %} "></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+
+        $(document).ready(function () {
+            $('.slider').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true
+            });
+        });
+
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            });
+        });
+
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- //bootstrap -->
+    <script src=" {% static 'js/bootstrap.min.js' %} "></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Your cart related JavaScript here
+            
+            // Example: If you need to display total
+            const totalElement = document.querySelector('.checkout h3');
+            if(totalElement) {
+                console.log('Total:', totalElement.textContent);
+            }
+            
+            // Example: If you need to handle quantity updates
+            const quantityInputs = document.querySelectorAll('input[name="quan"]');
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    console.log('Quantity changed:', this.value);
+                });
+            });
+        });
+    </script>
+
+    <!-- At the bottom of your file, before closing body tag -->
+    <script>
+        // Cart specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle quantity updates
+            const quantityInputs = document.querySelectorAll('input[name="quan"]');
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    console.log('Quantity changed:', this.value);
+                });
+            });
+
+            // Handle modal
+            $('.modal').on('shown.bs.modal', function () {
+                $(this).find('[name="quan"]').focus();
+            });
+        });
+
+        // Scroll function
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // Top button function
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+
+</body>
+
+</html>
